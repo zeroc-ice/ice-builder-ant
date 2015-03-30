@@ -1,0 +1,70 @@
+// **********************************************************************
+//
+// Copyright (c) 2003-2015 ZeroC, Inc. All rights reserved.
+//
+// This copy of Ice is licensed to you under the terms described in the
+// ICE_LICENSE file included in this distribution.
+//
+// **********************************************************************
+
+apply plugin: 'java'
+apply plugin: 'maven'
+
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'org.apache.ant:ant:1.9.4'
+}
+
+sourceSets {
+    main {
+        java {
+            srcDir "src"
+        }
+    }
+}
+
+def pluginVersion  = "1.0"
+
+def pomName = "build/libs/ant-ice-${pluginVersion}.pom"
+task writeNewPom {
+    outputs.file file(pomName)
+} << {
+    pom {
+        project {
+            url 'https://www.zeroc.com'
+            packaging 'jar'
+            groupId 'com.zeroc'
+            artifactId 'ant-ice'
+            version pluginVersion
+            // TODO: Extend with licensing information.
+        }
+    }.writeTo(pomName)
+}
+jar.dependsOn(writeNewPom)
+
+jar {
+    archiveName = "ant-ice-${pluginVersion}.jar"
+    manifest {
+        attributes("Built-By": "ZeroC, Inc.")
+    }
+}
+
+task jarSources(type:Jar, dependsOn: jar){
+    from sourceSets.main.allSource
+    classifier = "${pluginVersion}-source"
+}
+assemble.dependsOn(jarSources)
+
+//
+// Used to build the gradle wrapper to automatically download and install
+// the version of gradle needed to build plugin.
+//
+task wrapper(type: Wrapper) {
+    gradleVersion = "2.3"
+}

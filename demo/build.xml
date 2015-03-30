@@ -1,0 +1,55 @@
+<!--
+ **********************************************************************
+
+ Copyright (c) 2003-2015 ZeroC, Inc. All rights reserved.
+
+ This copy of Ice is licensed to you under the terms described in the
+ ICE_LICENSE file included in this distribution.
+
+ **********************************************************************
+-->
+
+<project name="demo" default="generate" basedir=".">
+
+    <!-- The Slice2Java Ant Task jar must be in the classpath -->
+    <taskdef name="slice2java" classname="Slice2JavaTask" />
+    <taskdef name="slice2freezej" classname="Slice2FreezeJTask" />
+
+    <!-- 
+        Set to location of Ice slice files and uncomment includepath
+        elements below is slice definitions require Ice defined types.
+    -->
+    <!-- property name="slice.dir" value="ICE SLICE LOCATION"/ -->
+
+    <target name="generate">
+
+        <!-- Generated files will be placed in generated directory -->
+        <mkdir dir="generated" />
+
+	<!-- Slice2Java example -->
+        <slice2java outputdir="generated">
+            <!-- includepath>
+                <pathelement path="${slice.dir}" />
+            </includepath -->
+            <fileset dir=".">
+                <include name="*.ice" />
+            </fileset>
+        </slice2java>
+
+	<!-- Slice2FreezeJ example -->
+        <slice2freezej outputdir="generated">
+            <!-- includepath>
+                <pathelement path="${slice.dir}" />
+            </includepath -->
+            <fileset dir=".">
+                <include name="*.ice" />
+            </fileset>
+            <dict name="Demo.ByteIntMap" key="byte" value="int"/>
+            <index name="Demo.NameIndex" type="Demo::Person" member="name" casesensitive="false"/>
+        </slice2freezej>
+    </target>
+
+    <target name="clean">
+        <delete dir="generated"/>
+    </target>
+</project>
