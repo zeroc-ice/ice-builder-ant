@@ -1,4 +1,4 @@
-This repository contains the source code a ant task to manage compilation
+This repository contains the source code for an ant task to manage compilation
 of [Slice](https://doc.zeroc.com/display/Ice/The+Slice+Language) files for
 Java.
 
