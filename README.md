@@ -1,10 +1,14 @@
-This repository contains the source code for an ant task to manage compilation
-of [Slice](https://doc.zeroc.com/display/Ice/The+Slice+Language) files for
-Java.
+#Ice Builder for Ant
 
-To build the plugin run:
+The Ice Builder for Ant provides an ant task, `Slice2JavaTask`, that automates the execution of the Slice-to-Java compiler.
 
+## Build Instructions 
+
+Use the following command to build the Ice Builder for Ant jar file (`ant-ice.jar`):
+
+```
   $ ./gradlew build
+```
+## Usage
 
-For infomation on how to use the plugin, please see the [Slice2Java Ant Task]
-(https://doc.zeroc.com/display/Ice36/Slice2Java+Ant+Task) documentation.
+See [Slice2Java Ant Task] (https://doc.zeroc.com/display/Ice36/Slice2Java+Ant+Task).
