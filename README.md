@@ -13,15 +13,15 @@ Use the following command to build the Ice Builder for Ant jar file (`ant-ice.ja
 
 ### Execution Environment
 
-The _Slice2JavaTask_ must be able to locate and spawn the _slice2java_ executable. You can specify the directory of your Ice installation by defining the ice.home ant property or the _ICE_HOME_ environment variable, in which case the task assumes that the Slice compiler's executable is located in the _bin_ subdirectory of the specified installation directory. For example, if _ICE_HOME_ is set to _/opt/Ice_ on Linux, the task assumes that the executable path name is _/opt/Ice/bin/slice2java_. Furthermore, the task also configures its shared library search path (if necessary for your platform) to ensure the executable can resolve its library dependencies.
+The `Slice2JavaTask` must be able to locate and spawn the `slice2java` executable. You can specify the directory of your Ice installation by defining the ice.home ant property or the `ICE_HOME` environment variable, in which case the task assumes that the Slice compiler's executable is located in the _bin_ subdirectory of the specified installation directory. For example, if `ICE_HOME` is set to `/opt/Ice` on Linux, the task assumes that the executable path name is `/opt/Ice/bin/slice2java`. Furthermore, the task also configures its shared library search path (if necessary for your platform) to ensure the executable can resolve its library dependencies.
 
-If both _ice.home_ and _ICE_HOME_ are defined, _ice.home_ takes precedence. If neither are defined, the task assumes that the executable can already be found in your _PATH_ and that your shared library search path is configured correctly.
+If both `ice.home` and `ICE_HOME` are defined, `ice.home` takes precedence. If neither are defined, the task assumes that the executable can already be found in your `PATH` and that your shared library search path is configured correctly.
 
 Finally, you can use a task parameter to specify the full path name of the Slice compiler. Again, the task assumes that your shared library search path is configured correctly.
 
 ### Dependencies
 
-The task minimizes recompilation by maintaining dependencies between Slice files. The task stores this information in a file named _.depend_ in the output directory and updates these dependencies after each invocation. (You can specify a different name for this file using a task parameter.)
+The task minimizes recompilation by maintaining dependencies between Slice files. The task stores this information in a file named `.depend` in the output directory and updates these dependencies after each invocation. (You can specify a different name for this file using a task parameter.)
 
 Note that the task does not maintain dependencies between a Slice file and its generated Java source files. Consequently, removing the generated Java source files does not cause the task to recompile a Slice file. In fact, the task only compiles a Slice file when any of the following conditions are true:
 * no dependency file exists
@@ -45,12 +45,12 @@ The task supports the parameters listed in the following table:
 | _tie_ | Indicates whether to generate [tie classes](https://doc.zeroc.com/display/Ice/Tie+Classes+in+Java). If not specified, tie classes are not generated. | No |
 | _translator_ | Specifies the path name of the Slice compiler. If not specified, the task locates the Slice compiler in its [execution environment](https://doc.zeroc.com/display/Ice/Slice2Java+Ant+Task#Slice2JavaAntTask-ExecutionEnvironment). | No |
 
-For the flag parameters (_ice_, _stream_, and _tie_), legal positive values are _on_, _true_, or _yes_; negative values are _off_, _false_, or _no_.
+For the flag parameters (`ice`, `stream`, and `tie`), valid positive values are `on`, `true`, or `yes`; negative values are `off`, `false`, or `no`.
 
 ### Nested Elements
 
 Several Slice compiler options must be defined as nested elements of the task:
-* _define_
+* `define`
 
     Defines a preprocessor macro. The element supports the attributes name and (optionally) value, as shown below:
 
@@ -59,36 +59,36 @@ Several Slice compiler options must be defined as nested elements of the task:
     <define name="BAR" value="5">
     ```
 
-    These definitions are equivalent to the command-line options _-DFOO_ and _-DBAR=5_, respectively.
+    These definitions are equivalent to the command-line options `-DFOO` and `-DBAR=5`, respectively.
 
-* _fileset_
+* `fileset`
 
     Specifies the set of Slice files to be compiled. Refer to the ant documentation of its FileSet type for more information.
 
-* _includepath_
+* `includepath`
 
     Specifies the include file search path for Slice files. In ant terminology, includepath is a path-like structure. Refer to the ant documentation of its Path type for more information.
 
-* _meta_
+* `meta`
 
     Defines a global metadata directive in each Slice file as well as in each included Slice file. The element supports name and value attributes.
 
 ### Using the Task
 
-Define the following _taskdef_ element in your project's build file to enable the task:
+Define the following `taskdef` element in your project's build file to enable the task:
 
 ```
 <taskdef name="slice2java" classname="Slice2JavaTask"/>
 ```
 
-This configuration assumes that _ant-ice-1.0.jar_ is already present in ant's class path. Alternatively, you can specify the JAR explicitly as follows:
+This configuration assumes that `ant-ice-1.0.jar` is already present in ant's class path. Alternatively, you can specify the JAR explicitly as follows:
 
 ```
 <taskdef name="slice2java" classpath="/opt/Ice/lib/ant-ice-1.0.jar"
     classname="Slice2JavaTask"/>
 ```
 
-Once activated, you can invoke the task to translate your Slice files. The example shown below is a simplified version of the ant project for the _hello_ demo:
+Once activated, you can invoke the task to translate your Slice files. The example shown below is a simplified version of the ant project for the `hello` demo:
 
 ```
 <target name="generate" depends="init">
@@ -116,6 +116,6 @@ Once activated, you can invoke the task to translate your Slice files. The examp
 
 This project demonstrates some practices that we encourage you to adopt in your own projects. First, it is helpful to keep the source files generated by the Slice compiler separate from your application's source files by dedicating an output directory for the exclusive use of the Slice compiler. Doing so helps to minimize confusion and makes it easier to configure a source-code management system to ignore generated files.
 
-Next, we also recommend that you include a _clean_ target in your ant project that removes this output directory. Assuming that the dependency file (_.depend_) is also stored in this directory, removing the output directory is an efficient way to clean up your project's source tree and guarantees that all of your Slice files are recompiled in the next build.
+Next, we also recommend that you include a _clean_ target in your ant project that removes this output directory. Assuming that the dependency file (`.depend`) is also stored in this directory, removing the output directory is an efficient way to clean up your project's source tree and guarantees that all of your Slice files are recompiled in the next build.
 
-Finally, after seeing the exclude element in the invocation of _javac_ you might infer that the generated code was not being compiled, but the presence of the output directory in the _srcdir_ attribute ensures that the generated code is included in the build. The purpose of the _exclude_ element is to prevent ant from including the generated files twice in its target list.
+Finally, after seeing the exclude element in the invocation of `javac` you might infer that the generated code was not being compiled, but the presence of the output directory in the `srcdir` attribute ensures that the generated code is included in the build. The purpose of the `exclude` element is to prevent ant from including the generated files twice in its target list.
