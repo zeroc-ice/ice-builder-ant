@@ -1,5 +1,5 @@
 Contributing to the Ice Builder for Ant
-=========================================
+=======================================
 
 Thank you for your interest in contributing to the Ice Builder for Ant!
 
