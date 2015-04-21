@@ -8,7 +8,7 @@ The Ice Builder for Ant provides an ant task, `Slice2JavaTask`, that automates t
 
 Use the following command to build the Ice Builder for Ant jar file (`ant-ice.jar`):
 
-```
+```shell
   $ ./gradlew build
 ```
 ## Usage
@@ -56,7 +56,7 @@ Several Slice compiler options must be defined as nested elements of the task:
 
     Defines a preprocessor macro. The element supports the attributes name and (optionally) value, as shown below:
 
-    ```
+    ```ant
     <define name="FOO">
     <define name="BAR" value="5">
     ```
@@ -79,20 +79,20 @@ Several Slice compiler options must be defined as nested elements of the task:
 
 Define the following `taskdef` element in your project's build file to enable the task:
 
-```
+```ant
 <taskdef name="slice2java" classname="Slice2JavaTask"/>
 ```
 
 This configuration assumes that `ant-ice-1.0.jar` is already present in ant's class path. Alternatively, you can specify the JAR explicitly as follows:
 
-```
+```ant
 <taskdef name="slice2java" classpath="/opt/Ice/lib/ant-ice-1.0.jar"
     classname="Slice2JavaTask"/>
 ```
 
 Once activated, you can invoke the task to translate your Slice files. The example shown below is a simplified version of the ant project for the `hello` demo:
 
-```
+```ant
 <target name="generate" depends="init">
     <mkdir dir="generated"/>
     <slice2java outputdir="generated">
