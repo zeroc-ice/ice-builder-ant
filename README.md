@@ -1,20 +1,20 @@
 # Ice Builder for Ant
 
-The Ice Builder for Ant provides two ant tasks, `Slice2JavaTask` and `Slice2FreezeJTask`, that automate the execution of the [Slice-to-Java](https://doc.zeroc.com/display/Ice/slice2java+Command-Line+Options) and [Slice-to-FreezeJ](https://doc.zeroc.com/display/Ice/Using+a+Freeze+Map+in+Java) compilers.
+The Ice Builder for Ant provides two ant tasks, `slice2java` and `slice2jfreezej`, that automate the execution of the [Slice-to-Java](https://doc.zeroc.com/display/Ice/slice2java+Command-Line+Options) and [Slice-to-FreezeJ](https://doc.zeroc.com/display/Ice/Using+a+Freeze+Map+in+Java) compilers.
 
 ## Contents
 
 - [Build Instructions](#build-instructions)
 - [Execution Environment](#execution-environment)
-- [Slice2JavaTask](#slice2javatask)
-  - [Dependencies](#dependencies)
+- [`slice2java` Task](#slice2java-task)
   - [Paramaters](#paramaters)
   - [Nested Elements](#nested-elements)
   - [Using the Task](#using-the-task)
-- [Slice2FreezeJTask](#slice2freezejtask)
+- [`slice2freezej` Task](#slice2freezejtask)
   - [Paramaters](#paramaters)
   - [Nested Elements](#nested-elements)
   - [Using the Task](#using-the-task)
+- [When do the `slice2java` and `slice2freezej` tasks recompile Slice files?](#when-do-the-slice2java-and-slice2freezej-tasks-recompile-slice-files)
 
 ## Build Instructions
 
@@ -26,26 +26,13 @@ Use the following command to build the Ice Builder for Ant jar file (`ant-ice-4.
 
 ## Execution Environment
 
-The `Slice2JavaTask` and `Slice2FreezeJTask` tasks must be able to locate and spawn the `slice2java` and `slice2freezej` executables. You can specify the directory of your Ice installation by defining the ice.home ant property or the `ICE_HOME` environment variable, in which case the task assumes that the Slice compiler's executable is located in the `bin` subdirectory of the specified installation directory. For example, if `ICE_HOME` is set to `/opt/Ice` on Linux, the task assumes that the executable path name is `/opt/Ice/bin/slice2java` or `/opt/Ice/bin/slice2freezej`. Furthermore, the tasks also configure their shared library search path (if necessary for your platform) to ensure the executable can resolve its library dependencies.
+The `slice2java` and `slice2freezej` tasks must be able to locate and spawn the `slice2java` and `slice2freezej` executables. You can specify the directory of your Ice installation by defining the `ice.home` ant property or the `ICE_HOME` environment variable, in which case the task assumes that the Slice compiler's executable is located in the `bin` subdirectory of the specified installation directory. For example, if `ICE_HOME` is set to `/opt/Ice` on Linux, the task assumes that the executable path name is `/opt/Ice/bin/slice2java` or `/opt/Ice/bin/slice2freezej`. Furthermore, the tasks also configure their shared library search path (if necessary for your platform) to ensure the executable can resolve its library dependencies.
 
-If both `ice.home` and `ICE_HOME` are defined, `ice.home` takes precedence. If neither are defined, the task assumes that the executable can already be found in your `PATH` and that your shared library search path is configured correctly.
+If both `ice.home` and `ICE_HOME` are defined, `ice.home` takes precedence. If neither are defined, the task assumes that the executables can be found in your `PATH` and that your shared library search path is configured correctly.
 
 Finally, you can use a task parameter to specify the full path name of the Slice compiler. Again, the tasks assume that your shared library search path is configured correctly.
 
-## Slice2JavaTask
-
-### Dependencies
-
-The task minimizes recompilation by maintaining dependencies between Slice files. The task stores this information in a file named `.depend` in the output directory and updates these dependencies after each invocation. (You can specify a different name for this file using a task parameter.)
-
-Note that the task does not maintain dependencies between a Slice file and its generated Java source files. Consequently, removing the generated Java source files does not cause the task to recompile a Slice file. In fact, the task only compiles a Slice file when any of the following conditions are true:
-
-* No dependency file exists.
-* No dependency information is found for the Slice file.
-* The modification time of the Slice file is later than the modification time of the dependency file.
-* The Slice file includes another Slice file that is eligible for compilation.
-
-The simplest way to force the task to recompile all of your Slice files is to remove the dependency file.
+## `slice2java` Task
 
 ### Parameters
 
@@ -53,13 +40,13 @@ The task supports the parameters listed in the following table:
 
 | Attribute      | Description                                                                                                                                                                                                                                                                                                                                                          | Required |
 | -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------| -------- |
-| _checksum_     | Specifies the name of a class to contain the [Slice checksums](https://doc.zeroc.com/display/Ice/Using+Slice+Checksums+in+Java).                                                                                                                                                                                                                                     | No       |
-| dependencyfile | Specifies an alternate name for the dependency file. If you specify a relative filename, it is relative to ant's current working directory. If not specified, the task uses the name _.depend_ by default. If you do not define this attribute and _outputdir_ is defined, the task creates the _.depend_ file in the designated output directory (see _outputdir_). | No       |
-| _ice_          | Instructs the Slice compiler to permit symbols that have the reserved prefix _Ice_. This parameter is used in the Ice build system and is not normally required by applications.                                                                                                                                                                                     | No       |
-| _outputdir_    | Specifies the directory in which the Slice compiler generates Java source files. If not specified, the task uses ant's current working directory.                                                                                                                                                                                                                    | No       |
-| _stream_       | Indicates whether to generate [streaming support](https://doc.zeroc.com/display/Ice/Streaming+Interfaces). If not specified, streaming support is not generated.                                                                                                                                                                                                     | No       |
-| _tie_          | Indicates whether to generate [tie classes](https://doc.zeroc.com/display/Ice/Tie+Classes+in+Java). If not specified, tie classes are not generated.                                                                                                                                                                                                                 | No       |
-| _translator_   | Specifies the path name of the Slice compiler. If not specified, the task locates the Slice compiler in its [execution environment](#execution-environment).                                                                                                                                   | No       |
+| `checksum`     | Specifies the name of a class to contain the [Slice checksums](https://doc.zeroc.com/display/Ice/Using+Slice+Checksums+in+Java).                                                                                                                                                                                                                                     | No       |
+| `dependencyfile` | Specifies an alternate name for the `.depend` file. If you specify a relative filename, it is relative to ant's current working directory. If not specified, the task uses the name `.depend` by default. If you do not define this attribute and `outputdir` is defined, the task creates the `.depend` file in the designated output directory (see `outputdir`). | No       |
+| `ice`          | Instructs the Slice compiler to permit symbols that have a reserved prefix such as `Ice` and `Glacier2`.                                                                                                                                                                                     | No       |
+| `outputdir`    | Specifies the directory in which the Slice compiler generates Java source files. If not specified, the task uses ant's current working directory.                                                                                                                                                                                                                    | No       |
+| `stream`       | Indicates whether to generate [streaming support](https://doc.zeroc.com/display/Ice/Streaming+Interfaces). If not specified, streaming support is not generated.                                                                                                                                                                                                     | No       |
+| `tie`          | Indicates whether to generate [tie classes](https://doc.zeroc.com/display/Ice/Tie+Classes+in+Java). If not specified, tie classes are not generated.                                                                                                                                                                                                                 | No       |
+| `translator`   | Specifies the path name of the Slice compiler. If not specified, the task locates the Slice compiler in its [execution environment](#execution-environment).                                                                                                                                   | No       |
 
 For the flag parameters (`ice`, `stream`, and `tie`), valid positive values are `on`, `true`, or `yes`; negative values are `off`, `false`, or `no`.
 
@@ -83,7 +70,7 @@ Several Slice compiler options must be defined as nested elements of the task:
 
 * `includepath`
 
-    Specifies the include file search path for Slice files. In ant terminology, includepath is a path-like structure. Refer to the ant documentation of its Path type for more information.
+    Specifies the include file search path for Slice files. In ant terminology, `includepath` is a path-like structure. Refer to the ant documentation of its Path type for more information.
 
 * `meta`
 
@@ -136,16 +123,16 @@ Next, we also recommend that you include a `clean` target in your ant project th
 
 Finally, after seeing the exclude element in the invocation of `javac` you might infer that the generated code was not being compiled, but the presence of the output directory in the `srcdir` attribute ensures that the generated code is included in the build. The purpose of the `exclude` element is to prevent ant from including the generated files twice in its target list.
 
-## Slice2FreezeJTask
+## `slice2freezej` task
 
 ### Parameters
 
 | Attribute | Description | Required |
 | --------- | ----------- | -------- |
-| dependencyfile | Specifies an alternate name for the dependency file. If you specify a relative filename, it is relative to ant's current working directory. If not specified, the task uses the name `.depend` by default. If you do not define this attribute and `outputdir` is defined, the task creates the `.depend` file in the designated output directory (see `outputdir`). | No |
-| ice | Instructs the Slice compiler to permit symbols that have the reserved prefix `Ice`. This parameter is used in the Ice build system and is not normally required by applications. | No |
-| outputdir | Specifies the directory in which the Slice compiler generates Java source files. If not specified, the task uses ant's current working directory. | No |
-| translator | Specifies the path name of the Slice compiler. If not specified, the task locates the Slice compiler in its [execution environment](#execution-environment). | No |
+| `dependencyfile` | Specifies an alternate name for the `.depend` file. If you specify a relative filename, it is relative to ant's current working directory. If not specified, the task uses the name `.depend` by default. If you do not define this attribute and `outputdir` is defined, the task creates the `.depend` file in the designated output directory (see `outputdir`). | No |
+| `ice` | Instructs the Slice compiler to permit symbols that have a reserved prefix such as `Ice` or `Glacier2`. | No |
+| `outputdir` | Specifies the directory in which the Slice compiler generates Java source files. If not specified, the task uses ant's current working directory. | No |
+| `translator` | Specifies the path name of the Slice compiler. If not specified, the task locates the Slice compiler in its [execution environment](#execution-environment). | No |
 
 ### Nested Elements
 
@@ -216,6 +203,17 @@ Once activated, you can invoke the task to translate your Slice files. The examp
 </target>
 ```
 
-This invocation of the `Slice2FreezeJTask` enables the ice option because the generated Freeze map relies on a type that is defined in an Ice namespace and therefore loads the Slice file `BuiltinSequences.ice` directly.
+This invocation of the `slicefreezej` task enables the `ice` option because the generated Freeze map relies on a type that is defined in the `Ice` module and therefore loads the Slice file `BuiltinSequences.ice` directly.
 
+## When do the `slice2java` and `slice2freezej` tasks recompile Slice files?
 
+The tasks minimize recompilation by keeping track of dependencies between Slice files. For example, `A.ice` depends on `B.ice` and `C.ice` when `A.ice` includes `B.ice` and `B.ice` includes `C.ice`. Each task stores this information in a file named `.depend` in the output directory and updates these dependencies after each compilation. (You can also specify a different name for this file using a task parameter.)
+
+Note that the tasks do not keep track of the Java source files generated from the Slices files. Consequently, removing the generated Java source files does not trigger a recompilation of the Slice file. In fact, a task compiles a Slice file only when any of the following conditions are true:
+
+* The `.depend` file does not exist.
+* The `.depend` file does not contain any information for this Slice file.
+* The modification time of this Slice file is later than the modification time of the `.depend` file.
+* This Slice file includes another Slice file that is eligible for (re)compilation.
+
+The simplest way to force the tasks to recompile all of your Slice files is to remove the `.depend` file.
