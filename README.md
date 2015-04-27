@@ -123,7 +123,7 @@ Next, we also recommend that you include a `clean` target in your ant project th
 
 Finally, after seeing the exclude element in the invocation of `javac` you might infer that the generated code was not being compiled, but the presence of the output directory in the `srcdir` attribute ensures that the generated code is included in the build. The purpose of the `exclude` element is to prevent ant from including the generated files twice in its target list.
 
-## `slice2freezej` task
+## `slice2freezej` Task
 
 ### Parameters
 
