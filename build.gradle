@@ -41,7 +41,7 @@ task writeNewPom {
             version pluginVersion
             licenses {
                 license {
-                    name 'BSD 3-Clause'
+                    name 'BSD-3-Clause'
                     url 'https://github.com/zeroc-ice/ice-builder-ant/blob/master/LICENSE'
                     distribution 'repo'
                 }
