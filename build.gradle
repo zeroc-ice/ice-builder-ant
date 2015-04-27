@@ -39,7 +39,13 @@ task writeNewPom {
             groupId 'com.zeroc'
             artifactId 'ant-ice'
             version pluginVersion
-            // TODO: Extend with licensing information.
+            licenses {
+                license {
+                    name 'BSD 3-Clause'
+                    url 'https://github.com/zeroc-ice/ice-builder-ant/blob/master/LICENSE'
+                    distribution 'repo'
+                }
+            }
         }
     }.writeTo(pomName)
 }
