@@ -12,7 +12,7 @@
     <taskdef name="slice2java" classname="Slice2JavaTask" />
     <taskdef name="slice2freezej" classname="Slice2FreezeJTask" />
 
-    <!-- 
+    <!--
         Set to location of Ice slice files and uncomment includepath
         elements below is slice definitions require Ice defined types.
     -->

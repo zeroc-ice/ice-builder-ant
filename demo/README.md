@@ -1,4 +1,4 @@
-This demo shows how to use the [Slice2Java Ant Task](https://doc.zeroc.com/display/Ice36/Slice2Java+Ant+Task)
+This demo shows how to use the [Slice2Java Ant Task](../README.md#slice2javatask)
 to run both slice2java and slice2freezej on your [Slice](https://doc.zeroc.com/display/Ice/The+Slice+Language)
 files.
 

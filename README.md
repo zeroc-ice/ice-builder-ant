@@ -18,7 +18,7 @@ The Ice Builder for Ant provides two ant tasks, `Slice2JavaTask` and `Slice2Free
 
 ## Build Instructions
 
-Use the following command to build the Ice Builder for Ant jar file (`ant-ice.jar`):
+Use the following command to build the Ice Builder for Ant jar file (`ant-ice-4.0.0.jar`):
 
 ```shell
   $ ./gradlew build
@@ -39,10 +39,11 @@ Finally, you can use a task parameter to specify the full path name of the Slice
 The task minimizes recompilation by maintaining dependencies between Slice files. The task stores this information in a file named `.depend` in the output directory and updates these dependencies after each invocation. (You can specify a different name for this file using a task parameter.)
 
 Note that the task does not maintain dependencies between a Slice file and its generated Java source files. Consequently, removing the generated Java source files does not cause the task to recompile a Slice file. In fact, the task only compiles a Slice file when any of the following conditions are true:
-* no dependency file exists
-* no dependency information is found for the Slice file
-* the modification time of the Slice file is later than the modification time of the dependency file
-* the Slice file includes another Slice file that is eligible for compilation
+
+* No dependency file exists.
+* No dependency information is found for the Slice file.
+* The modification time of the Slice file is later than the modification time of the dependency file.
+* The Slice file includes another Slice file that is eligible for compilation.
 
 The simplest way to force the task to recompile all of your Slice files is to remove the dependency file.
 
@@ -96,10 +97,10 @@ Define the following `taskdef` element in your project's build file to enable th
 <taskdef name="slice2java" classname="Slice2JavaTask"/>
 ```
 
-This configuration assumes that `ant-ice-1.0.jar` is already present in ant's class path. Alternatively, you can specify the JAR explicitly as follows:
+This configuration assumes that `ant-ice-4.0.0.jar` is already present in ant's class path. Alternatively, you can specify the JAR explicitly as follows:
 
 ```ant
-<taskdef name="slice2java" classpath="/opt/Ice/lib/ant-ice-1.0.jar"
+<taskdef name="slice2java" classpath="/opt/Ice/lib/ant-ice-4.0.0.jar"
     classname="Slice2JavaTask"/>
 ```
 
@@ -193,10 +194,10 @@ Define the following `taskdef` element in your project's build file to enable th
 <taskdef name="slice2freezej" classname="Slice2FreezeJTask"/>
 ```
 
-This configuration assumes that `ant-ice.jar` is already present in ant's class path. Alternatively, you can specify the JAR explicitly as follows:
+This configuration assumes that `ant-ice-4.0.0.jar` is already present in ant's class path. Alternatively, you can specify the JAR explicitly as follows:
 
 ```ant
-<taskdef name="slice2freezej" classpath="/opt/Ice/lib/ant-ice.jar" classname="Slice2FreezeJTask"/>
+<taskdef name="slice2freezej" classpath="/opt/Ice/lib/ant-ice-4.0.0.jar" classname="Slice2FreezeJTask"/>
 ```
 
 Once activated, you can invoke the task to translate your Slice files. The example shown below is a simplified version of the ant project for the library demo:
