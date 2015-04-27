@@ -1,6 +1,4 @@
-[![Build Status](https://magnum.travis-ci.com/zeroc-ice/ice-builder-ant.svg?token=h2Co7ru9da15sRPx8x59&branch=master)](https://magnum.travis-ci.com/zeroc-ice/ice-builder-ant)
-
-#Ice Builder for Ant
+# Ice Builder for Ant
 
 The Ice Builder for Ant provides an ant task, `Slice2JavaTask`, that automates the execution of the Slice-to-Java compiler.
 
@@ -37,15 +35,15 @@ The simplest way to force the task to recompile all of your Slice files is to re
 
 The task supports the parameters listed in the following table:
 
-| Attribute | Description | Required |
-| --------- | ----------- | -------- |
-| _checksum_ | Specifies the name of a class to contain the [Slice checksums](https://doc.zeroc.com/display/Ice/Using+Slice+Checksums+in+Java). | No |
-| dependencyfile | Specifies an alternate name for the dependency file. If you specify a relative filename, it is relative to ant's current working directory. If not specified, the task uses the name _.depend_ by default. If you do not define this attribute and _outputdir_ is defined, the task creates the _.depend_ file in the designated output directory (see _outputdir_). | No |
-| _ice_ | Instructs the Slice compiler to permit symbols that have the reserved prefix _Ice_. This parameter is used in the Ice build system and is not normally required by applications. | No |
-| _outputdir_ | Specifies the directory in which the Slice compiler generates Java source files. If not specified, the task uses ant's current working directory. | No |
-| _stream_ | Indicates whether to generate [streaming support](https://doc.zeroc.com/display/Ice/Streaming+Interfaces). If not specified, streaming support is not generated. | No |
-| _tie_ | Indicates whether to generate [tie classes](https://doc.zeroc.com/display/Ice/Tie+Classes+in+Java). If not specified, tie classes are not generated. | No |
-| _translator_ | Specifies the path name of the Slice compiler. If not specified, the task locates the Slice compiler in its [execution environment](https://doc.zeroc.com/display/Ice/Slice2Java+Ant+Task#Slice2JavaAntTask-ExecutionEnvironment). | No |
+| Attribute      | Description                                                                                                                                                                                                                                                                                                                                                          | Required |
+| -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------| -------- |
+| _checksum_     | Specifies the name of a class to contain the [Slice checksums](https://doc.zeroc.com/display/Ice/Using+Slice+Checksums+in+Java).                                                                                                                                                                                                                                     | No       |
+| dependencyfile | Specifies an alternate name for the dependency file. If you specify a relative filename, it is relative to ant's current working directory. If not specified, the task uses the name _.depend_ by default. If you do not define this attribute and _outputdir_ is defined, the task creates the _.depend_ file in the designated output directory (see _outputdir_). | No       |
+| _ice_          | Instructs the Slice compiler to permit symbols that have the reserved prefix _Ice_. This parameter is used in the Ice build system and is not normally required by applications.                                                                                                                                                                                     | No       |
+| _outputdir_    | Specifies the directory in which the Slice compiler generates Java source files. If not specified, the task uses ant's current working directory.                                                                                                                                                                                                                    | No       |
+| _stream_       | Indicates whether to generate [streaming support](https://doc.zeroc.com/display/Ice/Streaming+Interfaces). If not specified, streaming support is not generated.                                                                                                                                                                                                     | No       |
+| _tie_          | Indicates whether to generate [tie classes](https://doc.zeroc.com/display/Ice/Tie+Classes+in+Java). If not specified, tie classes are not generated.                                                                                                                                                                                                                 | No       |
+| _translator_   | Specifies the path name of the Slice compiler. If not specified, the task locates the Slice compiler in its [execution environment](https://doc.zeroc.com/display/Ice/Slice2Java+Ant+Task#Slice2JavaAntTask-ExecutionEnvironment).                                                                                                                                   | No       |
 
 For the flag parameters (`ice`, `stream`, and `tie`), valid positive values are `on`, `true`, or `yes`; negative values are `off`, `false`, or `no`.
 
