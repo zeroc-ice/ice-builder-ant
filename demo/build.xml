@@ -14,7 +14,7 @@
 
     <!--
         Set to location of Ice slice files and uncomment includepath
-        elements below is slice definitions require Ice defined types.
+        elements below if slice definitions require Ice defined types.
     -->
     <!-- property name="slice.dir" value="ICE SLICE LOCATION"/ -->
 
