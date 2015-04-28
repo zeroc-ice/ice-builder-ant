@@ -5,8 +5,9 @@
 The Ice Builder for Ant provides two ant tasks, `slice2java` and `slice2jfreezej`, that automate the execution of the [Slice-to-Java](https://doc.zeroc.com/display/Ice/slice2java+Command-Line+Options) and [Slice-to-FreezeJ](https://doc.zeroc.com/display/Ice/Using+a+Freeze+Map+in+Java) compilers.
 
 ## Contents
-
-- [Build Instructions](#build-instructions)
+- [Install Instructions](#install-instructions)
+  - [Download](#download)
+  - [Build From Source](#build-from-source)
 - [Execution Environment](#execution-environment)
 - [`slice2java` Task](#slice2java-task)
   - [Parameters](#parameters)
@@ -18,7 +19,14 @@ The Ice Builder for Ant provides two ant tasks, `slice2java` and `slice2jfreezej
   - [Using the Task](#using-the-task-1)
 - [When do the `slice2java` and `slice2freezej` tasks recompile Slice files?](#when-do-the-slice2java-and-slice2freezej-tasks-recompile-slice-files)
 
-## Build Instructions
+## Install Instructions
+
+### Download
+The Ice Builder for Ant is available from _ZeroC_'s  [`Nexus` repository](https://repo.zeroc.com/nexus) with _groupId_:`com.zeroc` and _artifactId_:`ant-ice`. Refer to your build systems's documentation for adding additional repositories.
+
+You can also download the Ice Builder for Ant jar file [directly](https://repo.zeroc.com/nexus/content/repositories/releases/com/zeroc/ant-ice/4.0.0/) from `Nexus`.
+
+### Build From Source
 
 Use the following command to build the Ice Builder for Ant jar file (`ant-ice-4.0.0.jar`):
 
@@ -186,7 +194,8 @@ Define the following `taskdef` element in your project's build file to enable th
 This configuration assumes that `ant-ice-4.0.0.jar` is already present in ant's class path. Alternatively, you can specify the JAR explicitly as follows:
 
 ```ant
-<taskdef name="slice2freezej" classpath="/opt/Ice/lib/ant-ice-4.0.0.jar" classname="Slice2FreezeJTask"/>
+<taskdef name="slice2freezej" classpath="/opt/Ice/lib/ant-ice-4.0.0.jar"
+    classname="Slice2FreezeJTask"/>
 ```
 
 Once activated, you can invoke the task to translate your Slice files. The example shown below is a simplified version of the ant project for the library demo:
