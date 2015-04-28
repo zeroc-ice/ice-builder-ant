@@ -7,13 +7,13 @@ The Ice Builder for Ant provides two ant tasks, `slice2java` and `slice2jfreezej
 - [Build Instructions](#build-instructions)
 - [Execution Environment](#execution-environment)
 - [`slice2java` Task](#slice2java-task)
-  - [Paramaters](#paramaters)
+  - [Parameters](#parameters)
   - [Nested Elements](#nested-elements)
   - [Using the Task](#using-the-task)
-- [`slice2freezej` Task](#slice2freezejtask)
-  - [Paramaters](#paramaters)
-  - [Nested Elements](#nested-elements)
-  - [Using the Task](#using-the-task)
+- [`slice2freezej` Task](#slice2freezej-task)
+  - [Parameters](#parameters-1)
+  - [Nested Elements](#nested-elements-1)
+  - [Using the Task](#using-the-task-1)
 - [When do the `slice2java` and `slice2freezej` tasks recompile Slice files?](#when-do-the-slice2java-and-slice2freezej-tasks-recompile-slice-files)
 
 ## Build Instructions
