@@ -22,7 +22,7 @@ The Ice Builder for Ant provides two ant tasks, `slice2java` and `slice2jfreezej
 ## Install Instructions
 
 ### Download
-The Ice Builder for Ant is available from _ZeroC_'s  [`Nexus` repository](https://repo.zeroc.com/nexus) with _groupId_:`com.zeroc` and _artifactId_:`ant-ice`. Refer to your build systems's documentation for adding additional repositories.
+The Ice Builder for Ant is available from ZeroC's  [`Nexus` repository](https://repo.zeroc.com/nexus) with _groupId_:`com.zeroc` and _artifactId_:`ant-ice`. Refer to your build systems's documentation for adding additional repositories.
 
 You can also download the Ice Builder for Ant jar file [directly](https://repo.zeroc.com/nexus/content/repositories/releases/com/zeroc/ant-ice/4.0.0/) from `Nexus`.
 
