@@ -1,4 +1,4 @@
 language: java
 notifications:
   slack:
-    secure: RjfdNGBPKLrPRlFJGFe7aF0xs8RNkqYvXDy/zZ4WXXIAhQ0Wm8ekb3sVnT78KtaFduZBhiR/3/O7VNmhdU/72kfGRDYT9NT3WEABYqUNG2KTnSOhr5+lhY0T7Jnq/wJsbRnUQHdctYWs5TKeksK3R4Ra1/GiaGJ9h+h1EkbhPAA=
+    secure: KJ7CEjnt7eyoGgcFhlwZS5p+PQBoTdV9H9/Kii0JmG0L0SRgzOh0r41zdoU49TdPJD5Y0/z135TYBms+ce4Cd/yiVc3jVeGevziHDnlHT0JS0MBG7RR3yLbgHcVVdIGA5bAJcByGkHM8Mgi0jOIB9Wt/NwwqNmlIYASS6kvsqOo=
