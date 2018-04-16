@@ -26,7 +26,7 @@ sourceSets {
     }
 }
 
-def pluginVersion  = "4.0.0"
+def pluginVersion  = "4.0.1"
 
 def pomName = "build/libs/ant-ice-${pluginVersion}.pom"
 task writeNewPom {
