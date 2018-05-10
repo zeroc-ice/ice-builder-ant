@@ -2,7 +2,7 @@
 
 # Ice Builder for Ant
 
-The Ice Builder for Ant provides two ant tasks, `slice2java` and `slice2jfreezej`, that automate the execution of the [Slice-to-Java](https://doc.zeroc.com/display/Ice/slice2java+Command-Line+Options) and [Slice-to-FreezeJ](https://doc.zeroc.com/display/Ice/Using+a+Freeze+Map+in+Java) compilers.
+The Ice Builder for Ant provides two ant tasks, `slice2java` and `slice2jfreezej`, that automate the execution of the [Slice-to-Java](https://doc.zeroc.com/display/Ice/slice2java+Command-Line+Options) and [Slice-to-FreezeJ](https://doc.zeroc.com/display/Ice36/Using+a+Freeze+Map+in+Java) compilers.
 
 ## Contents
 - [Install Instructions](#install-instructions)
@@ -55,7 +55,7 @@ The task supports the parameters listed in the following table:
 | `ice`            | Instructs the Slice compiler to permit symbols that have a reserved prefix such as `Ice` and `Glacier2`.                                                                                                                                                                                                                                                            | No       |
 | `outputdir`      | Specifies the directory in which the Slice compiler generates Java source files. If not specified, the task uses ant's current working directory.                                                                                                                                                                                                                   | No       |
 | `stream`         | Indicates whether to generate [streaming support](https://doc.zeroc.com/display/Ice/Streaming+Interfaces). If not specified, streaming support is not generated.                                                                                                                                                                                                    | No       |
-| `tie`            | Indicates whether to generate [tie classes](https://doc.zeroc.com/display/Ice/Tie+Classes+in+Java). If not specified, tie classes are not generated.                                                                                                                                                                                                                | No       |
+| `tie`            | Indicates whether to generate [tie classes](https://doc.zeroc.com/display/Ice36/Tie+Classes+in+Java). If not specified, tie classes are not generated.                                                                                                                                                                                                                | No       |
 | `compat`         | Indicates whether to use the [Java Compat](https://doc.zeroc.com/display/Ice/Selecting+the+Java+Compat+Mapping) mapping. If not specified, the newer mapping will be used.                                                                                                                                                                                          | No       |
 | `translator`     | Specifies the path name of the Slice compiler. If not specified, the task locates the Slice compiler in its [execution environment](#execution-environment).                                                                                                                                                                                                        | No       |
 
@@ -162,11 +162,11 @@ Several Slice compiler options must be defined as nested elements of the task:
 
 * `dict`
 
-    Generates a Freeze map. This element is equivalent to the `--dict` [command line option](https://doc.zeroc.com/display/Ice/Using+a+Freeze+Map+in+Java#UsingaFreezeMapinJava-slice2freezej) and supports three attributes: `name`, `key`, and `value`.
+    Generates a Freeze map. This element is equivalent to the `--dict` [command line option](https://doc.zeroc.com/display/Ice36/Using+a+Freeze+Map+in+Java#UsingaFreezeMapinJava-slice2freezej) and supports three attributes: `name`, `key`, and `value`.
 
 * `dictindex`
 
-    Generates an index for a Freeze map. This element is equivalent to the `--dict-index` [command line option](https://doc.zeroc.com/display/Ice/Using+a+Freeze+Map+in+Java#UsingaFreezeMapinJava-slice2freezej) and supports three attributes: `name`, `member`, and `casesensitive`.
+    Generates an index for a Freeze map. This element is equivalent to the `--dict-index` [command line option](https://doc.zeroc.com/display/Ice36/Using+a+Freeze+Map+in+Java#UsingaFreezeMapinJava-slice2freezej) and supports three attributes: `name`, `member`, and `casesensitive`.
 
 * `fileset`
 
@@ -178,7 +178,7 @@ Several Slice compiler options must be defined as nested elements of the task:
 
 * `index`
 
-    Generates an index for a Freeze evictor. This element is equivalent to the `--index` [command line option](https://doc.zeroc.com/display/Ice/Using+a+Freeze+Map+in+Java#UsingaFreezeMapinJava-slice2freezej) and supports four attributes: `name`, `type`, `member`, and `casesensitive`.
+    Generates an index for a Freeze evictor. This element is equivalent to the `--index` [command line option](https://doc.zeroc.com/display/Ice36/Using+a+Freeze+Map+in+Java#UsingaFreezeMapinJava-slice2freezej) and supports four attributes: `name`, `type`, `member`, and `casesensitive`.
 
 * `meta`
 
