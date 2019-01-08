@@ -22,13 +22,11 @@ The Ice Builder for Ant provides two ant tasks, `slice2java` and `slice2jfreezej
 ## Install Instructions
 
 ### Download
-The Ice Builder for Ant is available from ZeroC's  [`Nexus` repository](https://repo.zeroc.com/nexus) with _groupId_:`com.zeroc` and _artifactId_:`ant-ice`. Refer to your build systems' documentation for adding additional repositories.
-
-You can also download the Ice Builder for Ant jar file [directly](https://repo.zeroc.com/nexus/content/repositories/releases/com/zeroc/ant-ice/4.0.0/) from `Nexus`.
+The Ice Builder for Ant is available from the [Maven Central repository](https://search.maven.org) with _groupId_:`com.zeroc` and _artifactId_:`ant-ice`. Refer to your build systems' documentation for adding additional repositories.
 
 ### Build From Source
 
-Use the following command to build the Ice Builder for Ant jar file (`ant-ice-4.0.0.jar`):
+Use the following command to build the Ice Builder for Ant jar file (`ant-ice-4.0.1.jar`):
 
 ```shell
   $ ./gradlew build
@@ -95,10 +93,10 @@ Define the following `taskdef` element in your project's build file to enable th
 <taskdef name="slice2java" classname="Slice2JavaTask"/>
 ```
 
-This configuration assumes that `ant-ice-4.0.0.jar` is already present in ant's class path. Alternatively, you can specify the JAR explicitly as follows:
+This configuration assumes that `ant-ice-4.0.1.jar` is already present in ant's class path. Alternatively, you can specify the JAR explicitly as follows:
 
 ```ant
-<taskdef name="slice2java" classpath="/opt/Ice/lib/ant-ice-4.0.0.jar"
+<taskdef name="slice2java" classpath="/opt/Ice/lib/ant-ice-4.0.1.jar"
     classname="Slice2JavaTask"/>
 ```
 
@@ -192,10 +190,10 @@ Define the following `taskdef` element in your project's build file to enable th
 <taskdef name="slice2freezej" classname="Slice2FreezeJTask"/>
 ```
 
-This configuration assumes that `ant-ice-4.0.0.jar` is already present in ant's class path. Alternatively, you can specify the JAR explicitly as follows:
+This configuration assumes that `ant-ice-4.0.1.jar` is already present in ant's class path. Alternatively, you can specify the JAR explicitly as follows:
 
 ```ant
-<taskdef name="slice2freezej" classpath="/opt/Ice/lib/ant-ice-4.0.0.jar"
+<taskdef name="slice2freezej" classpath="/opt/Ice/lib/ant-ice-4.0.1.jar"
     classname="Slice2FreezeJTask"/>
 ```
 

@@ -4,18 +4,21 @@
 //
 // **********************************************************************
 
-apply plugin: 'java'
-apply plugin: 'maven'
+plugins {
+    id 'java'
+    id 'maven-publish'
+    id 'signing'
+}
 
 sourceCompatibility = 1.7
 targetCompatibility = 1.7
 
-repositories {
-    mavenCentral()
-}
+def pluginVersion = "4.0.1"
 
-dependencies {
-    compile 'org.apache.ant:ant:1.9.4'
+jar {
+    manifest {
+        attributes("Built-By": "ZeroC, Inc.")
+    }
 }
 
 sourceSets {
@@ -26,48 +29,66 @@ sourceSets {
     }
 }
 
-def pluginVersion  = "4.0.1"
+repositories {
+    mavenCentral()
+}
 
-def pomName = "build/libs/ant-ice-${pluginVersion}.pom"
-task writeNewPom {
-    outputs.file file(pomName)
-} << {
-    pom {
-        project {
-            url 'https://zeroc.com'
-            packaging 'jar'
-            groupId 'com.zeroc'
-            artifactId 'ant-ice'
-            version pluginVersion
-            licenses {
-                license {
-                    name 'BSD-3-Clause'
-                    url 'https://github.com/zeroc-ice/ice-builder-ant/blob/master/LICENSE'
-                    distribution 'repo'
+dependencies {
+    implementation group: 'org.apache.ant', name: 'ant', version: '1.10.5'
+}
+
+task sourcesJar(type: Jar) {
+    from sourceSets.main.allJava
+    classifier = 'sources'
+}
+
+task javadocJar(type: Jar) {
+    from javadoc
+    classifier = 'javadoc'
+}
+
+publishing {
+    publications {
+        antIce(MavenPublication) {
+            groupId = 'com.zeroc'
+            artifactId = 'ant-ice'
+            version = pluginVersion
+            from components.java
+            artifact sourcesJar
+            artifact javadocJar
+
+            pom {
+                name = 'Ice Builder for Ant'
+                description = 'Ant tasks to automate the compilation of Slice files to Java'
+                url = 'https://zeroc.com'
+
+                licenses {
+                    license {
+                        name = 'BSD-3-Clause'
+                        url = 'https://github.com/zeroc-ice/ice-builder-ant/blob/master/LICENSE'
+                        distribution = 'repo'
+                    }
                 }
             }
         }
-    }.writeTo(pomName)
-}
-jar.dependsOn(writeNewPom)
-
-jar {
-    archiveName = "ant-ice-${pluginVersion}.jar"
-    manifest {
-        attributes("Built-By": "ZeroC, Inc.")
+    }
+    repositories {
+        maven {
+            url "https://oss.sonatype.org/service/local/staging/deploy/maven2"
+            credentials {
+                username sonatypeUsername
+                password sonatypePassword
+            }
+        }
     }
 }
 
-task jarSources(type:Jar, dependsOn: jar){
-    from sourceSets.main.allSource
-    classifier = "${pluginVersion}-source"
+signing {
+    sign publishing.publications.antIce
 }
-assemble.dependsOn(jarSources)
 
-//
-// Used to build the gradle wrapper to automatically download and install
-// the version of gradle needed to build plugin.
-//
-task wrapper(type: Wrapper) {
-    gradleVersion = "2.6"
+javadoc {
+    if(JavaVersion.current().isJava9Compatible()) {
+        options.addBooleanOption('html5', true)
+    }
 }

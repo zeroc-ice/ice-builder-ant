@@ -81,13 +81,12 @@ public class Slice2JavaTask extends SliceTask
     {
         _tie = tie;
     }
-    
+
     public void
     setCompat(boolean compat)
     {
         _compat = compat;
     }
-
 
     public void
     setChecksum(String checksum)
@@ -233,7 +232,7 @@ public class Slice2JavaTask extends SliceTask
             {
                 cmd.append(" --tie");
             }
-            
+
             //
             // Add --compat
             //
@@ -382,7 +381,7 @@ public class Slice2JavaTask extends SliceTask
             }
 
             //
-            // It's not possible anymore to re-use the same output property since Ant 1.5.x. so we use a 
+            // It's not possible anymore to re-use the same output property since Ant 1.5.x. so we use a
             // unique property name here. Perhaps we should output the dependencies to a file instead.
             //
             final String outputProperty = "slice2java.depend." + System.currentTimeMillis();
@@ -419,7 +418,7 @@ public class Slice2JavaTask extends SliceTask
         // Since the dependency file can be shared by several slice
         // tasks we need to make sure that each dependency has a
         // unique key. We use the name of the task, the output
-        // directory and the name of the slice file to be compiled. 
+        // directory and the name of the slice file to be compiled.
         //
         // If there's two slice2java tasks using the same dependency
         // file, with the same output dir and which compiles the same
