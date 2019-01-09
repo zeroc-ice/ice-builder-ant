@@ -66,13 +66,25 @@ publishing {
                 name = 'Ice Builder for Ant'
                 description = 'Ant tasks to automate the compilation of Slice files to Java'
                 url = 'https://zeroc.com'
-
                 licenses {
                     license {
                         name = 'BSD-3-Clause'
                         url = 'https://github.com/zeroc-ice/ice-builder-ant/blob/master/LICENSE'
                         distribution = 'repo'
                     }
+                }
+                developers {
+                    developer {
+                        name = 'ZeroC Developers'
+                        email = 'info@zeroc.com'
+                        organization = 'ZeroC, Inc.'
+                        organizationUrl = 'https://zeroc.com'
+                    }
+                }
+                scm {
+                    connection = 'scm:git:git@github.com/zeroc-ice/ice-builder-ant.git'
+                    developerConnection = 'scm:git:git@github.com/zeroc-ice/ice-builder-ant.git'
+                    url = 'http://github.com/zeroc-ice/ice-builder-ant'
                 }
             }
         }
