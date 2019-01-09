@@ -13,7 +13,7 @@ plugins {
 sourceCompatibility = 1.7
 targetCompatibility = 1.7
 
-def pluginVersion = "4.0.1"
+version = "4.0.1"
 
 jar {
     manifest {
@@ -52,7 +52,7 @@ publishing {
         antIce(MavenPublication) {
             groupId = 'com.zeroc'
             artifactId = 'ant-ice'
-            version = pluginVersion
+            version = version
             from components.java
             artifact sourcesJar
             artifact javadocJar
@@ -74,10 +74,10 @@ publishing {
     }
     repositories {
         maven {
-            url "https://oss.sonatype.org/service/local/staging/deploy/maven2"
+            url mavenRepository
             credentials {
-                username sonatypeUsername
-                password sonatypePassword
+                username mavenUsername
+                password mavenPassword
             }
         }
     }
