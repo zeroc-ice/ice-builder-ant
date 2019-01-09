@@ -35,7 +35,8 @@ import java.io.FileOutputStream;
  *   sensitivity of a Freeze Map index.
  *
  * Example:
- *
+ * <pre>
+ * {@code
  *    <project ...>
  *        <taskdef name="slice2freezej" classname="Slice2FreezeJTask" />
  *        <property name="slice.dir" value="../include/slice"/>
@@ -54,8 +55,10 @@ import java.io.FileOutputStream;
  *            </slice2freezej>
  *        </target>
  *    </project>
+ *  }
+ *  </pre>
  *
- * The <taskdef> element installs the slice2freezej task.
+ * The {@code <taskdef>} element installs the slice2freezej task.
  */
 public class Slice2FreezeJTask extends SliceTask
 {

@@ -39,7 +39,8 @@ import java.io.BufferedWriter;
  *   stream - The value for the --stream translator option.
  *
  * Example:
- *
+ * <pre>
+ * {@code
  *    <project ...>
  *        <taskdef name="slice2java" classname="Slice2JavaTask" />
  *        <property name="slice.dir" value="../include/slice"/>
@@ -56,8 +57,10 @@ import java.io.BufferedWriter;
  *            </slice2java>
  *        </target>
  *    </project>
+ *  }
+ *  </pre>
  *
- * The <taskdef> element installs the slice2java task.
+ * The {@code <taskdef>} element installs the slice2java task.
  */
 public class Slice2JavaTask extends SliceTask
 {
