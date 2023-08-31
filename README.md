@@ -1,5 +1,3 @@
-[![Build Status](https://travis-ci.org/zeroc-ice/ice-builder-ant.svg)](https://travis-ci.org/zeroc-ice/ice-builder-ant)
-
 # Ice Builder for Ant
 
 The Ice Builder for Ant provides two ant tasks, `slice2java` and `slice2jfreezej`, that automate the execution of the [Slice-to-Java](https://doc.zeroc.com/display/Ice/slice2java+Command-Line+Options) and [Slice-to-FreezeJ](https://doc.zeroc.com/display/Ice36/Using+a+Freeze+Map+in+Java) compilers.
